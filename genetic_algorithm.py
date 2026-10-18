@@ -29,8 +29,9 @@ def fitness(individual, demandes, capacite, matrix, depot_index = 0):
     for tournee in tournees:
         point_precedent = depot_index
         for client in tournee:
+            idx = client + 1
             distance_totale += matrix[point_precedent][client]
-            point_precedent = client
+            point_precedent = idx
         distance_totale += matrix[point_precedent][depot_index]
     return distance_totale
 

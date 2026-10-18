@@ -1,5 +1,7 @@
 import numpy as np
 import pandas as pd
+
+#Dictionnaire des villes les plus grandes de Norvège selon leur population, latitude et longitude
 cities = {
     "Oslo":        {"population": 724290, "lat": 59.91, "lon": 10.75},
     "Bergen":      {"population": 293709, "lat": 60.39, "lon": 5.32},
@@ -14,6 +16,7 @@ cities = {
     "Ringsaker":   {"population": 35911,  "lat": 60.88, "lon": 10.93},
 }
 
+#Dictionnaire des terminaux logistiques de Posten Bring selon leur population, latitude et longitude
 terminals = {
     "Lorenskog":  {"lat": 59.93, "lon": 10.95},  # Østlandsterminalen (Oslo/Est)
     "Moss":       {"lat": 59.45, "lon": 10.70},  # Logistikksenter Moss (2026)
@@ -29,11 +32,15 @@ terminals = {
     "Tana":       {"lat": 70.19, "lon": 28.22},  # terminal Tana
 }
 
+#Dictionnaire des dépôts avant/après selon leur population, latitude et longitude
 depots = {
     "Torsvik":  {"lat": 57.70, "lon": 14.17},  # old warehouse IKEA, Jönköping, Sweden
     "Vestby":   {"lat": 59.57, "lon": 10.80},  # new DC IKEA
 }
 
+Terminaux = list(terminals.keys())  # les 12 terminaux
+
+#Fonction qui calcule, pour un n donné, la répartition de la population en fonction de la densité réelle de la population
 def client_repartition(cities, total_clients):
     pop_total = sum(city["population"] for city in cities.values())
     repartition = {}
@@ -41,6 +48,7 @@ def client_repartition(cities, total_clients):
         repartition[k] = int((total_clients*v["population"])/pop_total)
     return repartition
 
+#Fonction qui génère des coordonnées aléatoire pour un client
 def random_clients(lat, lon, r=50):
     distance = np.random.uniform(0, r)
     angle = np.random.uniform(0, 2*np.pi)
@@ -48,6 +56,7 @@ def random_clients(lat, lon, r=50):
     delta_lon = (distance * np.sin(angle)) / (111 * np.cos(np.radians(lat)))
     return lat + delta_lat, lon + delta_lon
 
+#Fonction qui génère un dictionnaire de client en fonction de la ville avec les coordonnées
 def generate_clients(cities, total_clients):
     clients = []
     repartition = client_repartition(cities, total_clients)
