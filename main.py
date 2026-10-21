@@ -23,7 +23,7 @@ def plot_resultats(df, fichier="comparaison_scenarios.png"):
     plt.savefig(fichier, dpi=150)
     print(f"Graphique enregistre dans {fichier}")
 
-NB_CLIENTS = 500
+NB_CLIENTS = 1000
 
 def main():
     np.random.seed(42)  # pour pouvoir reproduire exactement les memes resultats

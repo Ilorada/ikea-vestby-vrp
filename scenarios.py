@@ -11,7 +11,7 @@ def construire_matrice(depart_coord, clients_subset):
     points = [depart_coord]+[(c["lat"], c["lon"]) for c in clients_subset]
     return distance_matrix(points)
 
-#Fonction qui lance l'algorithme génétique sur un sous-ensemble de clients depuis un point de départ donné"
+#Fonction qui lance l'algorithme génétique sur un sous-ensemble de clients depuis un point de départ donné
 def resoudre_tournees(depart_coord, clients_subset, capacite = truck_capacity, pop_size = 50, generations = 100):
     n = len(clients_subset) #combien de clients on doit servir
     if n == 0: #si un terminal n'a aucun client, on ne lance pas le GPA pour rien
@@ -54,6 +54,7 @@ def assign_clients_by_capacity (clients, terminals, terminal_weights):
             c["terminal"] = ordre_terminaux[0]  # tous les quotas pleins -> on prend quand meme le plus proche
     return clients
 
+#Fonction qui calcule la distance totale pour un scenario sans quotas par terminal
 def scenario_avant(clients, terminals, depots, capacite= truck_capacity, pop_size=50, generations=100):
     clients = assign_clients_to_terminal([dict(c) for c in clients], terminals)
     torsvik = (depots["Torsvik"]["lat"], depots["Torsvik"]["lon"])

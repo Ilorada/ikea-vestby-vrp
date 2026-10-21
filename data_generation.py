@@ -38,6 +38,7 @@ depots = {
     "Vestby":   {"lat": 59.57, "lon": 10.80},  # new DC IKEA
 }
 
+#Extrait les 12 noms de terminaux du dictionnaire terminals
 Terminaux = list(terminals.keys())  # les 12 terminaux
 
 #Fonction qui calcule, pour un n donné, la répartition de la population en fonction de la densité réelle de la population
@@ -50,7 +51,7 @@ def client_repartition(cities, total_clients):
 
 #Fonction qui génère des coordonnées aléatoire pour un client
 def random_clients(lat, lon, r=50):
-    distance = np.random.uniform(0, r)
+    distance = distance = r * np.sqrt(np.random.uniform(0, 1))
     angle = np.random.uniform(0, 2*np.pi)
     delta_lat = (distance * np.cos(angle)) / 111
     delta_lon = (distance * np.sin(angle)) / (111 * np.cos(np.radians(lat)))
@@ -68,7 +69,7 @@ def generate_clients(cities, total_clients):
     return clients
 
 
-
+#Tests
 if __name__ == "__main__":
     clients = generate_clients(cities, 500)
     print(len(clients))
