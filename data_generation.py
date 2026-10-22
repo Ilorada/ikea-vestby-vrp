@@ -18,18 +18,14 @@ cities = {
 
 #Dictionnaire des terminaux logistiques de Posten Bring selon leur population, latitude et longitude
 terminals = {
-    "Lorenskog":  {"lat": 59.93, "lon": 10.95},  # Østlandsterminalen (Oslo/Est)
-    "Moss":       {"lat": 59.45, "lon": 10.70},  # Logistikksenter Moss (2026)
-    "Drobak":     {"lat": 59.66, "lon": 10.63},  # terminal Drøbak
-    "Sandnes":    {"lat": 58.85, "lon": 5.74},   # Logistikksenter Stavanger (Vagle)
-    "Bergen":     {"lat": 60.38, "lon": 5.35},   # Minde, Kanalveien 52B
-    "Forde":      {"lat": 61.45, "lon": 5.85},   # terminal Førde
-    "Trondheim":  {"lat": 63.35, "lon": 10.40},  # Logistikksenter Trondheim (Torgård)
-    "Bodo":       {"lat": 67.28, "lon": 14.40},  # terminal Bodø
-    "Mo_i_Rana":  {"lat": 66.31, "lon": 14.14},  # terminal Mo i Rana
-    "Tromso":     {"lat": 69.70, "lon": 18.98},  # Logistikksenter Tromsø
-    "Alta":       {"lat": 69.97, "lon": 23.27},  # terminal Alta
-    "Tana":       {"lat": 70.19, "lon": 28.22},  # terminal Tana
+    "Lorenskog":  {"lat": 59.93, "lon": 10.95},
+    "Moss":       {"lat": 59.45, "lon": 10.70},
+    "Drobak":     {"lat": 59.66, "lon": 10.63},
+    "Sandnes":    {"lat": 58.8130, "lon": 5.7137},
+    "Bergen":     {"lat": 60.38, "lon": 5.35},
+    "Trondheim":  {"lat": 63.35, "lon": 10.40},
+    "Mo_i_Rana":  {"lat": 66.3196, "lon": 14.1404},
+    "Tromso":     {"lat": 69.70, "lon": 18.98},
 }
 
 #Dictionnaire des dépôts avant/après selon leur population, latitude et longitude

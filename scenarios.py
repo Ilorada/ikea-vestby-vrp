@@ -13,13 +13,15 @@ def construire_matrice(depart_coord, clients_subset):
 
 #Fonction qui lance l'algorithme génétique sur un sous-ensemble de clients depuis un point de départ donné
 def resoudre_tournees(depart_coord, clients_subset, capacite = truck_capacity, pop_size = 50, generations = 100):
-    n = len(clients_subset) #combien de clients on doit servir
-    if n == 0: #si un terminal n'a aucun client, on ne lance pas le GPA pour rien
+    n = len(clients_subset)
+    if n == 0:
         return [], 0.0, 0
+    if n == 1:
+        d = haversine(depart_coord[0], depart_coord[1], clients_subset[0]["lat"], clients_subset[0]["lon"])
+        return [[0]], d * 2, 1
 
     matrix = construire_matrice(depart_coord, clients_subset)
-    demandes = [1]*n #chaque clien pèse 1, hypothèse modifiable et perfectible en fonction des données
-
+    demandes = [1]*n
     individu, distance_totale = genetic_algorithm(n, demandes, capacite, matrix, pop_size = pop_size, generations=generations)
     tournees = split(individu, demandes, capacite)
     return tournees, distance_totale, len(tournees)
@@ -110,18 +112,17 @@ def poids_population():
 #Fonction qui definit un poids par terminal selon une hypothese de taille d'entrepot (valeurs assumees, a justifier dans le rapport)
 def poids_taille():
     return {
-        "Lorenskog": 0.38, "Bergen": 0.14, "Sandnes": 0.11, "Drobak": 0.11,
-        "Trondheim": 0.09, "Moss": 0.06, "Tromso": 0.05,
-        "Forde": 0.02, "Bodo": 0.02, "Mo_i_Rana": 0.01, "Alta": 0.005, "Tana": 0.005,
+        "Lorenskog": 0.4000, "Bergen": 0.1474, "Sandnes": 0.1158, "Drobak": 0.1158,
+        "Trondheim": 0.0947, "Moss": 0.0632, "Tromso": 0.0526, "Mo_i_Rana": 0.0105,
     }
 
 #Fonction qui donne plus de poids aux terminaux situes loin d'un magasin IKEA physique (valeurs assumees, a justifier dans le rapport)
 def poids_inverse_ikea():
     return {
-        "Tana": 0.14, "Alta": 0.14, "Mo_i_Rana": 0.13, "Bodo": 0.13, "Forde": 0.12, "Tromso": 0.12,
-        "Moss": 0.08, "Drobak": 0.08,
-        "Sandnes": 0.03, "Bergen": 0.02, "Trondheim": 0.01, "Lorenskog": 0.00,
+        "Mo_i_Rana": 0.2766, "Tromso": 0.2553, "Moss": 0.1702, "Drobak": 0.1702,
+        "Sandnes": 0.0638, "Bergen": 0.0426, "Trondheim": 0.0213, "Lorenskog": 0.0000,
     }
+
 #Fonction qui donne le meme poids a chaque terminal
 def poids_egal():
     return {nom: 1 / len(Terminaux) for nom in Terminaux}
